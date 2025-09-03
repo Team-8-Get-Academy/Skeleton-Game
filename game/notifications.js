@@ -1,6 +1,7 @@
 const notifContainer = document.getElementById("notifications");
 const modalTitle = notifContainer.querySelector(".modalTitle");
 const modalContent = notifContainer.querySelector(".modalContent");
+const closeModalBtn = notifContainer.querySelector(".closeModal")
 
 let notifOpen = false;
 let notifQueue = [];
@@ -15,6 +16,8 @@ function closeNotification() {
         notifOpen = false;
     }
 }
+
+closeModalBtn.addEventListener("click", closeNotification)
 
 function _showNotification(title, content) {
     notifContainer.style.display = "";
