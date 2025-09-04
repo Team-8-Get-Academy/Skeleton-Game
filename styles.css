@@ -25,6 +25,21 @@ body {
     color: #fff;
     display: flex;
     align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+#infoBar .stats .hapinessBar {
+    flex-grow: 1;
+    height: 100%;
+    background: #000;
+    border-radius: 5px;
+}
+
+.hapinessBar .progressBar {
+    height: 100%;
+    background: #38ff69;
+    border-radius: 5px;
 }
 
 #infoBar .tabButtons {
@@ -61,4 +76,23 @@ body {
     background: #424242;
     color: #fff;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.innerNotifModal .modalTitle {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.innerNotifModal .modalContent {
+    font-size: 18px;
+    width: 100%;
+}
+
+.innerNotifModal .closeModal {
+    margin-top: auto;
 }

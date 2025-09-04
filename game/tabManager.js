@@ -42,4 +42,3 @@ function updateCurrentTab() {
 }
 
 window.addEventListener("hashchange", updateCurrentTab);
-updateCurrentTab();

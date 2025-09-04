@@ -6,11 +6,18 @@
     <title>Document</title>
     <link href="./styles.css" rel="stylesheet" >
 </head>
-<body>
+<body data-server-no-reload>
     <div id="infoBar">
         <div class="stats">
-            <img src="./assets/potato.png" style="height: 30px; margin: 0 6px;"><div id="potatoCount">0</div>
-            <img src="./assets/money.png" style="height: 30px; margin: 0 6px;"><div id="moneyCount">0</div>
+            <div style="display: flex; align-items: center;">
+                <img src="./assets/potato.png" style="height: 30px; margin-right: 5px;"><span id="potatoCount">0</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <img src="./assets/money.png" style="height: 30px; margin-right: 5px;"><span id="moneyCount">0</span>
+            </div>
+            <div class="hapinessBar">
+                <div class="progressBar" style="width: 0%"></div>
+            </div>
         </div>
         <div class="tabButtons">
             <button page="home">Home</button>
@@ -21,8 +28,8 @@
     <div id="tabContent"></div>
     <div id="notifications" style="display: none;">
         <div class="innerNotifModal">
-            <div class="modalTitle"></div>
-            <div class="modalContent"></div>
+            <div class="modalTitle">a</div>
+            <div class="modalContent">b</div>
             <button class="closeModal">Close</button>
         </div>
     </div>
