@@ -1,9 +1,10 @@
-import { MOODS } from "./constants.js"
+import { MOODS, REQUEST_NAMES } from "./constants.js"
 import { renderTab } from "./tabManager.js"
 
 const infobarElement = document.getElementById("infoBar")
 const tabButtons = infobarElement.querySelector(".tabButtons")
 
+const skeletonWant = document.getElementById("skeletonWant")
 const potatoCount = document.getElementById("potatoCount")
 const moneyCount = document.getElementById("moneyCount")
 const hapinessProgress = infobarElement.querySelector(".hapinessBar .progressBar")
@@ -14,12 +15,40 @@ export const stats = {
     money: 0,
     potatos: 0,
     hapiness: 100,
-    isDead: false,
-    mood: MOODS.NEUTRAL
+    mood: MOODS.NEUTRAL,
+    request: null
 }
 
+function loadGame() {
+    try {
+        const data = JSON.parse(localStorage.getItem("save-data"))
+
+        stats.money = data.money;
+        stats.potatos = data.potatos;
+        stats.hapiness = data.hapiness;
+        stats.mood = data.mood;
+        stats.request = data.request;
+
+    } catch {}
+}
+
+loadGame()
+
+window.saveGame = function () {
+    localStorage.setItem("save-data", JSON.stringify(stats))
+}
+
+const gameoverAudio = new Audio('./assets/gameover.mp3');
+
 function gameOver() {
-    document.body.innerHTML = `<div>Game Over</div><div>You lose!</div>`
+    document.body.innerHTML = /*HTML*/`
+    <div class="gameOverContainer">
+        <h1>Game Over!</h1>
+        <h2>Skeleton got too angry that you didn't give him what he wanted, and ate you alive.</h2>
+    </div>
+    `
+
+    gameoverAudio.play()
 }
 
 export function updateHapiness(value, newMood = null) {
@@ -33,12 +62,12 @@ export function updateHapiness(value, newMood = null) {
             moodTimeout = setTimeout(() => {
                 updateHapiness(0, MOODS.ANGRY)
                 renderTab("#home")
-            }, 20000)
+            }, 3000)
         } else if (newMood === MOODS.HAPPY) {
             moodTimeout = setTimeout(() => {
                 updateHapiness(0, MOODS.NEUTRAL)
                 renderTab("#home")
-            }, 20000)
+            }, 5000)
         }
     }
 
@@ -76,4 +105,5 @@ export function renderAll() {
     potatoCount.innerText = `${stats.potatos}`
     moneyCount.innerText = `${stats.money}`
     hapinessProgress.style.width = `${stats.hapiness}%`
+    skeletonWant.innerText = `Skeleton wants: ${stats.request ? REQUEST_NAMES[stats.request] : "Nothing"}`
 }
