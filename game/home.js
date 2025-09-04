@@ -63,6 +63,7 @@ function brushteeth(){
         updateHapiness(-5, MOODS.ANGRY);
     } else {
         showNotification("The skeleton got his theet brushed", "the Skeleton smiled happily")
+        stats.money -= prices.toothbrush
         if (hpBleedInterval) clearInterval(hpBleedInterval)
         updateHapiness(10, MOODS.HAPPY)
     }
