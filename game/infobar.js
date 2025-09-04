@@ -19,7 +19,7 @@ export const stats = {
 }
 
 function gameOver() {
-
+    document.body.innerHTML = `<div>Game Over</div><div>You lose!</div>`
 }
 
 export function updateHapiness(value, newMood = null) {
